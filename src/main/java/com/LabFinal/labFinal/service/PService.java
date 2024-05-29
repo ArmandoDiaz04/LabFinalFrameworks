@@ -20,6 +20,9 @@ public class PService {
     public List<Map<String, Object>> getPopulationIncrease(){
         return repository.getPopulationIncrease();
     }
+    public List<Map<String, Object>> getPopulationIncrease2(){
+        return repository.getPopulationIncrease2();
+    }
 
     public List<Map<String, Object>> getPopulationGrowth() {
         return repository.getPopulationGrowth();

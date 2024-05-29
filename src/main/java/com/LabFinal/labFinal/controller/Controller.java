@@ -20,7 +20,7 @@ public class Controller {
     }
     @GetMapping("/ejercicio2")
     public List<Map<String, Object>> getPopulationIncrease(){
-        return service.getPopulationIncrease();
+        return service.getPopulationIncrease2();
     }
 
     @GetMapping("/ejercicio3")
