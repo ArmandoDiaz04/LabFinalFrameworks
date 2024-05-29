@@ -14,26 +14,26 @@ import java.util.Map;
 public class Controller {
     @Autowired
     private PService service;
-    @GetMapping("/")
+    @GetMapping("/ejercicio1")
     public List<Map<String, Object>> getHighPopulationCountries(){
         return service.getHighPopulationCountries();
     }
-    @GetMapping("/increase")
+    @GetMapping("/ejercicio2")
     public List<Map<String, Object>> getPopulationIncrease(){
         return service.getPopulationIncrease();
     }
 
-    @GetMapping("/increaseCountry")
+    @GetMapping("/ejercicio4")
     public List<Map<String, Object>> getPopulationGrowth(){
         return service.getPopulationGrowth();
     }
 
-    @GetMapping("/populationDecrease")
+    @GetMapping("/ejercicio5")
     public List<Map<String, Object>> getPopulationDecrease() {
         return service.getPopulationDecrease();
     }
 
-    @GetMapping("/populationIncrease")
+    @GetMapping("/ejercicio3")
     public List<Map<String, Object>> getPopulationIncreaseGrowth() {
         return service.getPopulationIncreaseGrowth();
     }

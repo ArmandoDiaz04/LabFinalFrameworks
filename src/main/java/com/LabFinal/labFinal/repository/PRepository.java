@@ -12,14 +12,21 @@ public class PRepository {
     @Autowired
     private JdbcTemplate jdbcTemplate;
     public List<Map<String, Object>> getHighPopulationCountries() {
-        String sql = "SELECT " +
-                "p.pais AS Country, " +
-                "t.`2018` AS Population " +
-                "FROM datos t " +
-                "INNER JOIN paises p ON p.codigo = t.codigo " +
-                "GROUP BY p.pais " +
-                "ORDER BY t.`2018` DESC " +
-                "LIMIT 10";
+        String sql = "SELECT \n" +
+                "        p.pais AS Pais, \n" +
+                "        d.2018 AS Poblacion\n" +
+                "    FROM \n" +
+                "        paises p \n" +
+                "    JOIN datos d ON p.codigo = d.codigo\n" +
+                "    WHERE \n" +
+                "        d.2018 IS NOT NULL AND \n" +
+                "        p.nivel != 'Agregados' AND \n" +
+                "        p.pais NOT LIKE 'Mundo' AND\n" +
+                "        p.pais NOT LIKE '%Fede%' AND\n" +
+                "        p.pais NOT LIKE \"%Côte d'Ivoire%\" \n" +
+                "    ORDER BY \n" +
+                "        d.2018 DESC\n" +
+                "    LIMIT 10;";
 
         return jdbcTemplate.queryForList(sql);
     }
@@ -30,9 +37,15 @@ public class PRepository {
                 "(t.`2018` - t.`2017`) AS populationIncrease " +
                 "FROM datos t " +
                 "INNER JOIN paises p ON p.codigo = t.codigo " +
+                "WHERE t.`2018` IS NOT NULL AND " +
+                "p.nivel != 'Agregados' AND " +
+                "p.pais NOT LIKE 'Mundo' AND " +
+                "p.pais NOT LIKE '%Fede%' AND " +
+                "p.pais NOT LIKE \"%Côte d'Ivoire%\" " +
                 "GROUP BY p.codigo " +
                 "ORDER BY populationIncrease DESC " +
                 "LIMIT 5";
+
 
         return jdbcTemplate.queryForList(sql);
     }
