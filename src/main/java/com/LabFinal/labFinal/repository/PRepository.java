@@ -34,17 +34,21 @@ public class PRepository {
     public List<Map<String, Object>> getPopulationIncrease() {
         String sql = "SELECT " +
                 "p.pais AS Country, " +
-                "(t.`2018` - t.`2017`) AS populationIncrease " +
+                "(t.`2018` - t.`2017`) AS populationIncrease, " +
+                "ROUND(((t.`2018` - t.`2017`) / t.`2017`) * 100, 2) AS percentageIncrease " +
                 "FROM datos t " +
                 "INNER JOIN paises p ON p.codigo = t.codigo " +
                 "WHERE t.`2018` IS NOT NULL AND " +
+                "t.`2017` IS NOT NULL AND " +
                 "p.nivel != 'Agregados' AND " +
                 "p.pais NOT LIKE 'Mundo' AND " +
                 "p.pais NOT LIKE '%Fede%' AND " +
                 "p.pais NOT LIKE \"%Côte d'Ivoire%\" " +
                 "GROUP BY p.codigo " +
-                "ORDER BY populationIncrease DESC " +
-                "LIMIT 5";
+                "HAVING populationIncrease > 0 AND percentageIncrease > 0 " +
+                "ORDER BY percentageIncrease DESC";
+
+
 
 
         return jdbcTemplate.queryForList(sql);

@@ -23,17 +23,17 @@ public class Controller {
         return service.getPopulationIncrease();
     }
 
-    @GetMapping("/ejercicio4")
+    @GetMapping("/ejercicio3")
     public List<Map<String, Object>> getPopulationGrowth(){
         return service.getPopulationGrowth();
     }
 
-    @GetMapping("/ejercicio5")
+    @GetMapping("/ejercicio4")
     public List<Map<String, Object>> getPopulationDecrease() {
         return service.getPopulationDecrease();
     }
 
-    @GetMapping("/ejercicio3")
+    @GetMapping("/ejercicio5")
     public List<Map<String, Object>> getPopulationIncreaseGrowth() {
         return service.getPopulationIncreaseGrowth();
     }
